@@ -52,7 +52,9 @@ class RecommendationService(recommendations_pb2_grpc.RecommendationsServicer):
 
 
 def serve():
-    server = grpc.server(futures.ThreadPoolExecutor(max_workers=10))
+    server = grpc.server(
+        futures.ThreadPoolExecutor(max_workers=10),
+    )
     recommendations_pb2_grpc.add_RecommendationsServicer_to_server(
         RecommendationService(), server
     )
